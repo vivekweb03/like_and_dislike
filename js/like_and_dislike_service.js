@@ -8,7 +8,7 @@
 
   window.likeAndDislikeService = window.likeAndDislikeService || (function() {
     function likeAndDislikeService() {}
-    likeAndDislikeService.vote = function(entity_id, entity_type, tag, label) {
+    likeAndDislikeService.vote = function(entity_id, entity_type, tag, label, hide_label, hide_count) {
       $.ajax({
         type: "POST",
         url: drupalSettings.path.baseUrl + 'like_and_dislike/' + entity_type + '/' + tag + '/' + entity_id,
@@ -24,7 +24,7 @@
               return;
             }
             response.operation[iconType] ? $aTag.addClass('voted') : $aTag.removeClass('voted');
-            $(selector + ' .count').text(label + ' (' + response[iconType + 's'] + ')');
+            $(selector + ' .count').text(!hide_label?label:'' + (!hide_count?(' (' + response[iconType + 's'] + ')'):''));
           });
 
           // Display a message whether the vote was registered or an error

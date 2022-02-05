@@ -15,7 +15,7 @@
           if (!$(this).hasClass('disable-status')) {
             entity_id = $(this).data('entity-id');
             entity_type = $(this).data('entity-type');
-            likeAndDislikeService.vote(entity_id, entity_type, 'like', drupalSettings.likeLabel);
+            likeAndDislikeService.vote(entity_id, entity_type, 'like', drupalSettings.likeLabel, drupalSettings.hide_like_label, drupalSettings.hide_like_count);
           }
         });
         $widget.find('.vote-dislike a').click(function() {
@@ -23,7 +23,7 @@
           if (!$(this).hasClass('disable-status')) {
             entity_id = $(this).data('entity-id');
             entity_type = $(this).data('entity-type');
-            likeAndDislikeService.vote(entity_id, entity_type, 'dislike', drupalSettings.dislikeLabel);
+            likeAndDislikeService.vote(entity_id, entity_type, 'dislike', drupalSettings.dislikeLabel, drupalSettings.hide_like_label, drupalSettings.hide_like_count);
           }
         });
       });

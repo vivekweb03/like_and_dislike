@@ -118,12 +118,17 @@ class LikeDislikeVoteBuilder implements LikeDislikeVoteBuilderInterface, Trusted
       ];
     }
 
+    $hide_like_label = $this->configFactory->get('like_and_dislike.settings')->get('hide_like_label');
+    $hide_like_count = $this->configFactory->get('like_and_dislike.settings')->get('hide_like_count');
+
     $build['icons'] = [
       '#theme' => 'like_and_dislike_icons',
       '#attached' => ['library' => ['like_and_dislike/icons']],
       '#entity_id' => $entity_id,
       '#entity_type' => $entity_type_id,
       '#icons' => $icons,
+      '#hide_like_label' => $hide_like_label,
+      '#hide_like_count' => $hide_like_count,
     ];
 
     // Attach JS logic in case user has enough permissions to vote.
@@ -131,6 +136,8 @@ class LikeDislikeVoteBuilder implements LikeDislikeVoteBuilderInterface, Trusted
       $build['icons']['#attached']['library'][] = 'like_and_dislike/behavior';
       $build['icons']['#attached']['drupalSettings']['likeLabel'] = $like_title;
       $build['icons']['#attached']['drupalSettings']['dislikeLabel'] = $dislike_title;
+      $build['icons']['#attached']['drupalSettings']['hide_like_label'] = $hide_like_label;
+      $build['icons']['#attached']['drupalSettings']['hide_like_count'] = $hide_like_count;
     }
 
     return $build;

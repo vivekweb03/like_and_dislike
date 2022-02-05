@@ -19,7 +19,14 @@
     {% for type, icon in icons %}
       <div class="vote-{{ type }} type-{{ entity_type }}" id="{{ type }}-container-{{ entity_type }}-{{ entity_id }}">
         <a {{ icon.attributes }}>{{ icon.label }}</a>
-        <span class="count">{{ icon.label }} ({{ icon.count }})</span>
+        <span class="count">
+          {% if not hide_like_label %}
+          {{ icon.label }}
+          {% endif %}
+          {% if not hide_like_count %}
+          ({{ icon.count }})
+          {% endif %}
+        </span>
       </div>
     {% endfor %}
   </div>

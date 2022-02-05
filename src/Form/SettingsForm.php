@@ -186,6 +186,22 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('dislike_title'),
     ];
 
+    // Checkbox to allow hiding like/dislike label.
+    $form['hide_like_label'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide like-dislike widget label'),
+      '#description' => $this->t('If checked then hide label otherwise display from the frontend like_and_dislike widget.'),
+      '#default_value' => $config->get('hide_like_label'),
+    ];
+
+    // Checkbox to allow hiding like/dislike count.
+    $form['hide_like_count'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide like-dislike widget count'),
+      '#description' => $this->t('If checked then hide count otherwise display from the frontend like_and_dislike widget.'),
+      '#default_value' => $config->get('hide_like_count'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -218,6 +234,8 @@ class SettingsForm extends ConfigFormBase {
     $config->set('hide_vote_widget', $form_state->getValue('hide_vote_widget'));
     $config->set('like_title', $form_state->getValue('like_title'));
     $config->set('dislike_title', $form_state->getValue('dislike_title'));
+    $config->set('hide_like_label', $form_state->getValue('hide_like_label'));
+    $config->set('hide_like_count', $form_state->getValue('hide_like_count'));
     $config->save();
 
     parent::submitForm($form, $form_state);

@@ -174,8 +174,8 @@ function like_and_dislike_theme() {
       'entity_id' => NULL,
       'entity_type' => NULL,
       'icons' => [],
-      'likeLabel' => NULL,
-      'dislikelabel' => NULL,
+      'hide_like_label' => NULL,
+      'hide_like_count' => NULL,
     ],
   ];
   return $info;
